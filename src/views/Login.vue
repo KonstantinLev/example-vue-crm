@@ -76,7 +76,7 @@
 
     },
     methods: {
-      onSubmit() {
+      async onSubmit() {
         if (this.$v.$invalid) {
           this.$v.$touch()
           return
@@ -85,7 +85,12 @@
           email: this.email,
           password: this.password
         }
-        this.$router.push('/')
+        try {
+          await this.$store.dispatch('login', formData)
+          this.$router.push('/')
+        } catch (e) {
+          console.log(e)
+        }
       }
     }
   }
