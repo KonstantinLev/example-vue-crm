@@ -96,7 +96,7 @@
       agree: {checked: v => v}
     },
     methods: {
-      onSubmit() {
+      async onSubmit() {
         if (this.$v.$invalid) {
           console.log(this.$v)
           this.$v.$touch()
@@ -108,7 +108,12 @@
           name: this.name,
           agree: this.agree
         }
-        this.$router.push('/login')
+
+        try {
+          await this.$store.dispatch('register', formData)
+          this.$router.push('/login')
+        } catch (e) {}
+
       }
     }
   }

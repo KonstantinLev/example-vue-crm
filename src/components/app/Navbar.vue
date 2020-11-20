@@ -55,8 +55,8 @@
       }, 1000)
     },
     methods: {
-      logout() {
-        console.log('Logout')
+      async logout() {
+        await this.$store.dispatch('logout')
         this.$router.push('/login?msg=logout')
       }
     },
