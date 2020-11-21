@@ -150,6 +150,7 @@
           try {
             const formData = {
               categoryId: this.category,
+              type: this.type,
               amount: this.amount,
               description: this.description,
               date: new Date().toJSON()
