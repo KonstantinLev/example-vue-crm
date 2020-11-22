@@ -26,6 +26,7 @@
   import Navbar from '@/components/app/Navbar'
   import Sidebar from '@/components/app/Sidebar'
   import Loader from '@/components/app/Loader'
+  import msgs from '@/utils/msgs'
   export default {
     name: 'main-layout',
     data: () => ({
@@ -34,6 +35,17 @@
     }),
     components: {
       Navbar, Sidebar, Loader
+    },
+    computed: {
+      error() {
+        return this.$store.getters.getError
+      }
+    },
+    watch: {
+      error(fbError) {
+        console.log(fbError)
+        this.$error(msgs[fbError.code] || 'Woops!')
+      }
     },
     async mounted() {
       if (!Object.keys(this.$store.getters.info).length) {

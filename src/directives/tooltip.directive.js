@@ -1,6 +1,5 @@
 export default {
   bind(el, {value, arg = 'bottom'}) {
-    console.log(arg)
     M.Tooltip.init(el, {html: value, position: arg})
   },
   unbind(el) {
