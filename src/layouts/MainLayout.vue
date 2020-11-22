@@ -5,7 +5,7 @@
 
       <Navbar @navbar-collapse-click="isOpen = !isOpen" />
 
-      <Sidebar :isOpen="isOpen" />
+      <Sidebar :isOpen="isOpen" :key="locale" />
 
       <main class="app-content" :class="{full: !isOpen}">
         <div class="app-page">
@@ -39,13 +39,19 @@
     computed: {
       error() {
         return this.$store.getters.getError
+      },
+      locale() {
+        return this.$store.getters.info.locale
       }
     },
     watch: {
       error(fbError) {
         console.log(fbError)
         this.$error(msgs[fbError.code] || 'Woops!')
-      }
+      },
+      // locale() {
+      //
+      // }
     },
     async mounted() {
       if (!Object.keys(this.$store.getters.info).length) {
